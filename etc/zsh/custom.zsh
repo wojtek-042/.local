@@ -3,16 +3,14 @@
 export BROWSER="firefox"
 export WORK_DIR=$HOME/projects
 export PATH=$PATH:$WORK_DIR/.local/bin
-export CUSTOM_ZSH=$WORK_DIR/.local/etc/custom.zsh
+export CUSTOM_ZSH=$WORK_DIR/.local/etc/zsh/custom.zsh
 
 
 ######################### Directory jumping #########################
 
 alias govim="cd $HOME/.config/nvim/"
 
-alias d="cd $HOME && cd \$(find ./ -type d | fzf )"
-
-alias f="cd $HOME && nvim \$(find ./ -type f | fzf )"
+alias gozsh="cd $ZDOTDIR"
 
 alias sd="cd \$(find ./ -type d | fzf )"
 
@@ -24,9 +22,7 @@ alias ef="cd .. && nvim \$(find ./ -type f | fzf )"
 
 ######################### OTHER #########################
 
-alias lca='colorls -lA --sd --gs'
-
-alias lc='colorls -A --sd --gs'
+alias ls="ls --color"
 
 alias nv="nvim ."
 
