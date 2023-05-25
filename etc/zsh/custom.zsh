@@ -1,4 +1,4 @@
-######################### MY OWN VARS AND SETTINGS ######################### 
+######################### MY OWN VARS AND SETTINGS #########################
 
 export BROWSER="firefox"
 export WORK_DIR=$HOME/projects
@@ -12,6 +12,8 @@ alias govim="cd $HOME/.config/nvim/"
 alias gozsh="cd $ZDOTDIR"
 
 alias golocal="cd $WORK_DIR/.local"
+
+alias gosuck="cd $WORK_DIR/suckless"
 
 alias sd="cd \$(find ./ -type d | fzf )"
 
@@ -112,6 +114,7 @@ gpa() {
 alias gp='git push'
 alias gt='git pull'
 alias ga='git add -A'
+alias gd='git diff'
 
 #gc() { git commit -am "$1" ;}
 
