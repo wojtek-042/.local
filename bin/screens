@@ -1,0 +1,46 @@
+#!/bin/sh
+
+cd $(dirname $([ -L $0 ] && readlink -f $0 || echo $0))
+
+# Get the names of the connected displays
+displays=$(xrandr -q | grep ' connected' | awk '{print $1}')
+
+# Prompt the user to select the primary display using dmenu
+primary=$(echo $displays | tr ' ' '\n' | dmenu -i -p "Select the primary display:")
+
+# Set the selected display as the primary display
+xrandr --output $primary --primary
+
+# Remove the primary display from the list of displays
+other_displays=""
+for display in $displays; do
+  if [ "$display" != "$primary" ]; then
+    if [ -z "$other_displays" ]; then
+      other_displays="$display"
+    else
+      other_displays="$other_displays $display"
+    fi
+  fi
+done
+
+# Prompt the user with options for the other display using dmenu
+options="Turn Off\nLeft of Primary\nRight of Primary"
+selected_option=$(echo -e "$options" | dmenu -i -p "Select an action for the other display:")
+
+# Configure the other display based on the selected option
+case $selected_option in
+  "Turn Off")
+    xrandr --output $primary --auto --output ${other_displays#* } --off
+    ;;
+  "Left of Primary")
+    xrandr --output $primary --auto --output ${other_displays#* } --auto --left-of $primary
+    ;;
+  "Right of Primary")
+    xrandr --output $primary --auto --output ${other_displays#* } --auto --right-of $primary
+    ;;
+  *) echo "Invalid option.";;
+esac
+
+sleep 1
+
+./restoreWlp.sh

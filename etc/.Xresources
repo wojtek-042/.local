@@ -1,0 +1,76 @@
+URxvt*font: xft:MesloLGS\ NF:size=11
+!URxvt*font: xft:Hack Nerd Font:pixelsize=12,xft:UbuntuMono Nerd Font:pixelsize=12
+URxvt*scrollBar:        false
+
+
+*antialias:  true
+*autohint:   true
+
+
+URxvt.perl-ext-common: default,fullscreen,resize-font
+! fullscreen with F11
+URxvt.keysym.F11: perl:fullscreen:switch
+
+! `font-size` plugin
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+
+
+! Nightfox colors for Xresources
+! Style: carbonfox
+! Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/carbonfox/nightfox_xresources.Xresources
+*background: #161616
+*foreground: #f2f4f8
+*color0:  #282828
+*color1:  #ee5396
+*color2:  #25be6a
+*color3:  #08bdba
+*color4:  #78a9ff
+*color5:  #be95ff
+*color6:  #33b1ff
+*color7:  #dfdfe0
+*color8:  #484848
+*color9:  #f16da6
+*color10: #46c880
+*color11: #2dc7c4
+*color12: #8cb6ff
+*color13: #c8a5ff
+*color14: #52bdff
+*color15: #e4e4e5
+
+
+! Restore Ctrl+Shift+(c|v)
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+!URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! Common navigation  Keybinds
+
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
+
+!! Copy, Paste + More
+
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 2
+URxvt.url-select.autocopy:true
+
+!! THAT DAMN BELL
+URxvt*bellStyle: none
+URxvt.urgentOnBell: false
+! Disable terminal bell
+URxvt.visualBell: false
+URxvt.audibleBell: false
+
+URxvt*scrollTtyOutput: false
+

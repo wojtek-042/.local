@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Define the phrase to search for and remove from filenames
+search_phrase=$1
+
+# Loop through each file in the current directory
+for file in *; do
+	  # Check if the file's name contains the search phrase
+	    if echo "$file" | grep -q "$search_phrase"; then
+		        # Remove the search phrase from the filename
+			    new_name=$(echo "$file" | sed "s/$search_phrase//")
+			        
+			        # Rename the file
+				    mv "$file" "$new_name"
+				        
+				        echo "Renamed '$file' to '$new_name'"
+					  fi
+				  done
+
