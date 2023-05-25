@@ -2,7 +2,6 @@
 
 export BROWSER="firefox"
 export WORK_DIR=$HOME/projects
-export PATH=$PATH:$WORK_DIR/.local/bin
 export CUSTOM_ZSH=$WORK_DIR/.local/etc/zsh/custom.zsh
 
 
@@ -11,6 +10,8 @@ export CUSTOM_ZSH=$WORK_DIR/.local/etc/zsh/custom.zsh
 alias govim="cd $HOME/.config/nvim/"
 
 alias gozsh="cd $ZDOTDIR"
+
+alias golocal="cd $WORK_DIR/.local"
 
 alias sd="cd \$(find ./ -type d | fzf )"
 

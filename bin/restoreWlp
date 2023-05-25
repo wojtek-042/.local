@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd $(dirname $([ -L $0 ] && readlink -f $0 || echo $0))
-cd ../pics
+cd ../share
 feh --no-fehbg --bg-fill mw.jpg

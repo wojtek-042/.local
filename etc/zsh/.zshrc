@@ -8,7 +8,7 @@ pwd
 fpath=($ZDOTDIR/zsh-completions/src $fpath)
 zmodload zsh/complist
 autoload -U compinit; compinit
-_comp_options+=(globdots) 
+_comp_options+=(globdots)
 source $ZDOTDIR/completion.zsh
 
 ## Prompt
@@ -27,16 +27,16 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 ## VI mode
 
-bindkey -v
-export KEYTIMEOUT=1
+#bindkey -v
+#export KEYTIMEOUT=1
 #fpath=($ZDOTDIR/cursor_mode.zsh $fpath)
-source $ZDOTDIR/cursor_mode.zsh
+#source $ZDOTDIR/cursor_mode.zsh
 #cursor_mode
-autoload -Uz cursor_mode; cursor_mode
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+#autoload -Uz cursor_mode; cursor_mode
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
 
 
 ## Syntax highlighting

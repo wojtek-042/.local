@@ -41,6 +41,6 @@ case $selected_option in
   *) echo "Invalid option.";;
 esac
 
-sleep 1
+sleep 0.2
 
-./restoreWlp.sh
+./restoreWlp

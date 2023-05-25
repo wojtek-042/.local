@@ -11,12 +11,12 @@ cursor_mode() {
             [[ ${KEYMAP} == viins ]] ||
             [[ ${KEYMAP} = '' ]] ||
             [[ $1 = 'beam' ]]; then
-            echo -ne $cursor_beam
+            echo -ne $cursor_block
         fi
     }
 
     zle-line-init() {
-        echo -ne $cursor_beam
+        echo -ne $cursor_block
     }
 
 # If you have a problem with End and Home key
