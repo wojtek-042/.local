@@ -13,7 +13,7 @@ source $ZDOTDIR/completion.zsh
 
 ## Prompt
 
-source $ZDOTDIR/prompt_purification_setup.zsh
+#source $ZDOTDIR/prompt_purification_setup.zsh
 #autoload -Uz prompt_purification_setup; prompt_purification_setup
 #prompt_purification_setup
 
@@ -51,3 +51,8 @@ source $ZDOTDIR/bd.zsh
 source $ZDOTDIR/custom.zsh
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.config/emacs/bin:$PATH
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+source $ZDOTDIR/zsh-git-prompt/zshrc.sh
+# an example prompt
+PROMPT="%B%m%~%b$(git_super_status) \$ "
