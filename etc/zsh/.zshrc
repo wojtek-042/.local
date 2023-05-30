@@ -54,5 +54,6 @@ export PATH=$HOME/.config/emacs/bin:$PATH
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 source $ZDOTDIR/zsh-git-prompt/zshrc.sh
-# an example prompt
-PROMPT="%B%m%~%b$(git_super_status) \$ "
+## an example prompt
+#PROMPT="%B%m%~%b$(git_super_status) \$ "
+PROMPT='%B%F{9}%n%F{reset} %F{10}%~%F{reset}%b $(git_super_status)$ '
