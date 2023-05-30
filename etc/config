@@ -23,12 +23,15 @@ font pango:MesloLGS NF: 9
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xinput set-prop 11 303 1
-exec --no-startup-id dunst -config $HOME/projects/dotfiles/i3/dunstrc
-exec --no-startup-id setxkbmap pl
-exec --no-startup-id sh $HOME/projects/dotfiles/i3/shs/trays.sh &
-exec --no-startup-id picom --config $HOME/projects/dotfiles/i3/picom.conf
 
-set $status_cmd i3status -c $HOME/projects/dotfiles/i3/i3status.conf
+exec --no-startup-id . ~/projects/.local/etc/zsh/.zshenv
+
+exec --no-startup-id dunst -config $ETC_DIR/dunstrc
+exec --no-startup-id setxkbmap pl
+exec --no-startup-id sh $LOCAL_DIR/bin/trays.sh &
+exec --no-startup-id picom --config $ETC_DIR/picom.conf
+
+set $status_cmd i3status -c $HOME/projects/.local/etc/i3status.conf
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -94,7 +97,7 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+# tiling_drag modifier # titlebar
 default_border pixel
 
 # start a terminal
