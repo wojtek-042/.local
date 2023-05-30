@@ -49,3 +49,5 @@ source $ZDOTDIR/bd.zsh
 
 ## Custom aleeases
 source $ZDOTDIR/custom.zsh
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.config/emacs/bin:$PATH
