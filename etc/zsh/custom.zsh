@@ -174,7 +174,7 @@ bcrc -b ils-warsaw.ubudu.com -s ucs -m "$1\r\n" -t $2 -g $3
 
 pco() {
 
-    picocom /dev/tty$1 --q --b 115200
+    picocom /dev/tty$1 --q --echo --b 115200
 
 }
 
