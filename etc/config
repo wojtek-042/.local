@@ -24,14 +24,18 @@ font pango:MesloLGS NF: 9
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xinput set-prop 11 303 1
 
-exec --no-startup-id . ~/projects/.local/etc/zsh/.zshenv
+#exec --no-startup-id . ~/projects/.local/etc/zsh/.zshenv
 
-exec --no-startup-id dunst -config $ETC_DIR/dunstrc
+set $browser firefox
+set $work_dir $HOME/projects #ultimate root workdir for all my stuff
+set $local_dir $HOME/projects/.local
+set $etc_dir  $HOME/projects/.local/etc
+set $bin_dir $HOME/projects/.local/bin
+
+exec --no-startup-id dunst -config $etc_dir/dunstrc
 exec --no-startup-id setxkbmap pl
-exec --no-startup-id sh $LOCAL_DIR/bin/trays.sh &
-exec --no-startup-id picom --config $ETC_DIR/picom.conf
-
-set $status_cmd i3status -c $HOME/projects/.local/etc/i3status.conf
+exec --no-startup-id exec trays &
+exec --no-startup-id picom --config $etc_dir/picom.conf
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -40,16 +44,13 @@ set $status_cmd i3status -c $HOME/projects/.local/etc/i3status.conf
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
 # i3lock settings
-set $i3lockwall sh $HOME/projects/dotfiles/i3/shs/lock.sh &
-bindsym $mod+Ctrl+l exec --no-startup-id $i3lockwall
+bindsym $mod+Ctrl+l exec --no-startup-id $bin_dir/lock
 
-set $i3screens sh $HOME/projects/dotfiles/i3/shs/screens.sh &
-bindsym $mod+Ctrl+p exec --no-startup-id $i3screens
+bindsym $mod+Ctrl+p exec --no-startup-id $bin_dir/screens
 
-set $i3mic sh $HOME/projects/dotfiles/i3/shs/mic.sh &
-bindsym $mod+Ctrl+m exec --no-startup-id $i3mic
+bindsym $mod+Ctrl+m exec --no-startup-id $bin_dir/mic
 # wallpaper
-exec --no-startup-id $HOME/projects/dotfiles/i3/shs/restoreWlp.sh
+exec --no-startup-id restoreWlp
 
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
@@ -97,7 +98,7 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-# tiling_drag modifier # titlebar
+#tiling_drag modifier # titlebar
 default_border pixel
 
 # start a terminal
@@ -266,5 +267,5 @@ bindsym $mod+BackSpace mode "$mode_system"
 bar {
         font pango:Hack Nerd Font, Font Awesome 6 Free, Font Awesome 6 Brands, Font Awesome v4 Compatibility:style=Regular:antialias=true: 10
         tray_output VGA-1
-        status_command $status_cmd
+        status_command i3status -c $etc_dir/i3status.conf
 }

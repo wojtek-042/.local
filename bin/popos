@@ -16,7 +16,12 @@ MAIN_DIR=$HOME/$work_dir
 ZSH_DIR=$MAIN_DIR/.local/etc/zsh
 LOCAL_DIR=$MAIN_DIR/.local
 
-sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl zsh cowsay wget flameshot  libxft-dev libxinerama-dev libxrandr-dev  libharfbuzz-dev neofetch picom fonts-hermit feh alsa-utils gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev fonts-font-awesome ffmpeg playerctl ranger mpv xclip scrot imagemagick software-properties-common
+sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
+    zsh cowsay wget flameshot  libxft-dev libxinerama-dev libxrandr-dev  \
+    libharfbuzz-dev neofetch picom fonts-hermit feh alsa-utils gcc g++ \
+    libfreetype6-dev libglib2.0-dev libcairo2-dev fonts-font-awesome \
+    ffmpeg playerctl ranger mpv xclip scrot imagemagick \
+    software-properties-common i3, dunst, nm-tray, blueman, geoclue-2.0
 
 sudo apt update && sudo apt upgrade
 
@@ -59,11 +64,13 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 rm $HOME/.zshrc
 rm $HOME/.xinitrc
 sudo cp $LOCAL_DIR/share/dwm.desktop /usr/share/xsessions/dwm.desktop
+mkdir $HOME/.config/i3
 ln -s $LOCAL_DIR/etc/.xinitrc $HOME/
 ln -s $ZSH_DIR/.zshenv $HOME/
 ln -s $LOCAL_DIR/etc/.tmux.conf $HOME/
 ln -s $LOCAL_DIR/etc/picom.conf $HOME/.config
 ln -s $LOCAL_DIR/bin/dwm_exec $HOME/
+ln -s $LOCAL_DIR/etc/config $HOME/.config/i3/
 
 
 cd $MAIN_DIR/suckless/dwm && sudo make clean install
