@@ -1,9 +1,6 @@
 ######################### MY OWN VARS AND SETTINGS #########################
 
-export BROWSER="firefox"
-export WORK_DIR=$HOME/projects
-export CUSTOM_ZSH=$WORK_DIR/.local/etc/zsh/custom.zsh
-
+# Moved to the .zshenv!
 
 ######################### Directory jumping #########################
 
@@ -31,11 +28,11 @@ alias nv="nvim ."
 
 alias rn="ranger ."
 
-alias helpme="cat $CUSTOM_ZSH | sed 's/alias//'| sed 's/=/ ---> /' | sed 's/) /) ---> /' | sed 's/[\"'\'']//g' "
+alias helpme="cat $ZDOTDIR/custom.zsh | sed 's/alias//'| sed 's/=/ ---> /' | sed 's/) /) ---> /' | sed 's/[\"'\'']//g' "
 
 alias srb='source $HOME/.zshrc'
 
-alias als='nvim $CUSTOM_ZSH'
+alias als="nvim $ZDOTDIR/custom.zsh"
 
 alias tms='tmux ls'
 
@@ -177,7 +174,7 @@ bcrc -b ils-warsaw.ubudu.com -s ucs -m "$1\r\n" -t $2 -g $3
 
 pco() {
 
-    picocom /dev/tty$1 --b 115200
+    picocom /dev/tty$1 --q --b 115200
 
 }
 

@@ -2,7 +2,6 @@ export PATH=/home/ap/.local/share/gem/ruby/3.0.0/bin:$PATH
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-pwd
 ## Completion
 
 fpath=($ZDOTDIR/zsh-completions/src $fpath)
