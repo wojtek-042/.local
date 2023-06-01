@@ -6,5 +6,5 @@ pkill -f nm-applet
 
 flameshot  &
 blueman-applet &
-nm-applet --indicator &
+nm-tray --indicator &
 

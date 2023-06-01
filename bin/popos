@@ -16,12 +16,17 @@ MAIN_DIR=$HOME/$work_dir
 ZSH_DIR=$MAIN_DIR/.local/etc/zsh
 LOCAL_DIR=$MAIN_DIR/.local
 
+cd $LOCAL_DIR
+
+git submodule init
+git submodule update
+
 sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
     zsh cowsay wget flameshot  libxft-dev libxinerama-dev libxrandr-dev  \
     libharfbuzz-dev neofetch picom fonts-hermit feh alsa-utils gcc g++ \
     libfreetype6-dev libglib2.0-dev libcairo2-dev fonts-font-awesome \
     ffmpeg playerctl ranger mpv xclip scrot imagemagick \
-    software-properties-common i3, dunst, nm-tray, blueman, geoclue-2.0
+    software-properties-common i3 dunst nm-tray blueman geoclue-2.0
 
 sudo apt update && sudo apt upgrade
 

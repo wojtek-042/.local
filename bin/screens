@@ -25,7 +25,7 @@ done
 
 # Prompt the user with options for the other display using dmenu
 options="Turn Off\nLeft of Primary\nRight of Primary"
-selected_option=$(echo -e "$options" | dmenu -i -p "Select an action for the other display:")
+selected_option=$(echo  "$options" | dmenu -i -p "Select an action for the other display:")
 
 # Configure the other display based on the selected option
 case $selected_option in
