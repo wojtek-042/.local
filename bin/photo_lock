@@ -1,0 +1,65 @@
+#!/bin/sh
+
+
+# Take a screenshot of the wallpaper
+#screenshot_file="$photo_dir/screenshot_$(date +%Y%m%d%H%M%S).png"
+#import -window root "$screenshot_file"
+img=/tmp/i3lock.png
+
+scrot -o $img
+
+
+# Lock the screen with i3lock
+i3lock -i "$img" &
+
+photo_taken=false
+
+# Wait for any mouse button click event
+#xinput test-xi2 --root | while read -r line; do
+#  if echo "$line" | grep -q "ButtonPress"; then
+#        echo "gówno" >> $HOME/Pictures/test.txt
+#        # Capture a photo with the laptop webcam
+#        photo_file="$HOME/Pictures/sneaky_$(date +%Y%m%d%H%M%S).jpg"
+#        fswebcam -r 1280x720 -d /dev/video0 "$photo_file"
+#  elif echo "$line" | grep -q "ButtonRelease"; then
+#        photo_taken=false
+#  fi
+#done
+
+#  xinput test-xi2 --root | while read -r line; do
+#  if echo "$line" | grep -q "ButtonPress"; then
+#      if [ "$photo_taken" = false ]; then
+#        echo "gówno" >> "$HOME/Pictures/test.txt"
+#
+#        # Capture a photo with the laptop webcam
+#        photo_file="$HOME/Pictures/sneaky_$(date +%Y%m%d%H%M%S).jpeg"
+#       # fswebcam --no-banner -r 640x480 -d /dev/video0 "$photo_file"
+#       streamer -s 640x480 -o "$photo_file"
+#        photo_taken=true
+#      fi
+#    elif echo "$line" | grep -q "ButtonRelease"; then
+#      photo_taken=false
+#      break
+#    fi
+#  done
+
+lock_pid=$(pgrep -x i3lock)
+
+xinput test-xi2 --root | while read -r line; do
+  if echo "$line" | grep -q "ButtonPress"; then
+    if ps -p "$lock_pid" > /dev/null; then
+      if [ "$photo_taken" = false ]; then
+        echo "gówno" >> "$HOME/Pictures/test.txt"
+
+        # Capture a photo with the laptop webcam
+        photo_file="$HOME/Pictures/sneaky_$(date +%Y%m%d%H%M%S).jpeg"
+        streamer -s 640x480 -o "$photo_file"
+        photo_taken=true
+      fi
+    else
+      break  # Exit the loop if i3lock process is not running anymore
+    fi
+  elif echo "$line" | grep -q "ButtonRelease"; then
+    photo_taken=false
+  fi
+done
