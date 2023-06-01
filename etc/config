@@ -266,6 +266,6 @@ bindsym $mod+BackSpace mode "$mode_system"
 
 bar {
         font pango:Hack Nerd Font, Font Awesome 6 Free, Font Awesome 6 Brands, Font Awesome v4 Compatibility:style=Regular:antialias=true: 10
-        tray_output VGA-1
+        tray_output primary
         status_command i3status -c $etc_dir/i3status.conf
 }
