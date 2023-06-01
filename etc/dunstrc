@@ -20,7 +20,10 @@
     follow = none
 
     ### Geometry ###
-    geometry = "300x5-30+20"
+    geometry = "350x20-30+20"
+    startup_notification = no
+    word_wrap = yes
+    shrink = yes
 
     # dynamic width from 0 to 300
    # width = (0, 300)
@@ -124,7 +127,7 @@
 
     ### Text ###
 
-    font =  Hack Nerd Font Mono 12
+    font =  Hack Nerd Font Mono 11
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
