@@ -26,7 +26,8 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
     libharfbuzz-dev neofetch picom fonts-hermit feh alsa-utils gcc g++ \
     libfreetype6-dev libglib2.0-dev libcairo2-dev fonts-font-awesome \
     ffmpeg playerctl ranger mpv xclip scrot imagemagick \
-    software-properties-common i3 dunst nm-tray blueman geoclue-2.0
+    software-properties-common i3 dunst nm-tray blueman geoclue-2.0 \
+    libopencv-dev libx11-dev i3lock
 
 sudo apt update && sudo apt upgrade
 
