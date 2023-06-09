@@ -43,9 +43,11 @@ sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/sp
 cowsay "Setting up fonts"
 sudo mkdir /usr/share/fonts/truetype/meslo && sudo mv *.ttf /usr/share/fonts/truetype/meslo/
 
+cd $HOME/Downloads/
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-mkdir ~/.local/share/fonts
-unzip Hack.zip -d HackTTF && mv HackTTF ~/.local/share/fonts/
+mkdir ~/.local/share/fonts/TTF
+unzip Hack.zip -d HackTTF && mv HackTTF ~/.local/share/fonts/TTF/
+rm -rf Hack.zip
 
 cd $HOME
 
