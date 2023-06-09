@@ -31,15 +31,16 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
 
 sudo apt update && sudo apt upgrade
 
+cowsay "installing flatpaks"
 flatpak install spotify slack
 
-#cowsay "Installing oh-my-zh and powerlevel10k"
 
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+cowsay "Symlinking flatpak binaries for dmenu use"
+sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.slack.Slack /usr/bin/slack
+sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/spotify
 
+
+cowsay "Setting up fonts"
 sudo mkdir /usr/share/fonts/truetype/meslo && sudo mv *.ttf /usr/share/fonts/truetype/meslo/
 
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
@@ -47,12 +48,6 @@ mkdir ~/.local/share/fonts
 unzip Hack.zip -d HackTTF && mv HackTTF ~/.local/share/fonts/
 
 cd $HOME
-#sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#
-#git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-#
-#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-#git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 cowsay "Setting up neovim"
 
@@ -69,6 +64,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 rm $HOME/.zshrc
 rm $HOME/.xinitrc
+
+cowsay "Cloning tmux plugins"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #for tmux plugins
+
+cowsay "Setting up symlinks"
 sudo cp $LOCAL_DIR/share/dwm.desktop /usr/share/xsessions/dwm.desktop
 mkdir $HOME/.config/i3
 ln -s $LOCAL_DIR/etc/.xinitrc $HOME/
