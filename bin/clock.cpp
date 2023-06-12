@@ -18,6 +18,12 @@ extern "C" {
 
 using namespace std;
 
+bool isKeyPressed(Display *display, KeyCode keycode) {
+  char keys[32];
+  XQueryKeymap(display, keys);
+  return keys[keycode >> 3] & (1 << (keycode & 7));
+}
+
 void takeScreenshot(const string &filename) {
   Display *display = XOpenDisplay(NULL);
   Window root = DefaultRootWindow(display);
@@ -69,6 +75,8 @@ bool monitorMouseMovement(const string &directory, int maxPictures) {
   int rootX, rootY, winX, winY;
   unsigned int mask;
 
+  KeyCode escapeKeyCode = XKeysymToKeycode(display, XK_Escape);
+
   int pictureCounter = 0;
   XQueryPointer(display, root, &root, &child, &rootX, &rootY, &winX, &winY,
                 &mask);
@@ -88,6 +96,13 @@ bool monitorMouseMovement(const string &directory, int maxPictures) {
     }
     lastX = rootX;
     lastY = rootY;
+
+    if (isKeyPressed(display, escapeKeyCode)) {
+      cout << "Escape key pressed. Terminating..." << endl;
+      XCloseDisplay(display);
+      return false;
+    }
+
     this_thread::sleep_for(chrono::milliseconds(500));
   }
 
@@ -115,7 +130,6 @@ int main() {
     return 0;
   }
 
-  cin.get(); // Wait for any key press to terminate the script
-
   return 0;
 }
+
