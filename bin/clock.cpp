@@ -115,9 +115,10 @@ int main() {
 
   string backgroundPath = directory + "/background.png";
   bool bgExists = std::filesystem::exists(backgroundPath);
-  if (!bgExists) {
-    takeScreenshot(backgroundPath);
+  if (bgExists) {
+    std::filesystem::remove(backgroundPath);
   }
+  takeScreenshot(backgroundPath);
 
   lockComputer(backgroundPath);
 
@@ -132,4 +133,3 @@ int main() {
 
   return 0;
 }
-
