@@ -194,6 +194,8 @@ bmq() {
 
 flash() { nrfjprog --recover && nrfjprog --program "$1" --sectorerase && nrfjprog -r ;}
 
+tb() { cat $1 | tty-table  ;}
+
 #keychain --quiet ~/.ssh/gw-key-1
 #source ~/.keychain/$HOST-sh
 

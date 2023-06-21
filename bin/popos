@@ -27,7 +27,7 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
     libfreetype6-dev libglib2.0-dev libcairo2-dev fonts-font-awesome \
     ffmpeg playerctl ranger mpv xclip scrot imagemagick \
     software-properties-common i3 dunst nm-tray blueman geoclue-2.0 \
-    libopencv-dev libx11-dev i3lock
+    libopencv-dev libx11-dev i3lock keychain
 
 sudo apt update && sudo apt upgrade
 
@@ -71,7 +71,7 @@ cowsay "Cloning tmux plugins"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #for tmux plugins
 
 cowsay "Setting up symlinks"
-sudo cp $LOCAL_DIR/share/dwm.desktop /usr/share/xsessions/dwm.desktop
+
 mkdir $HOME/.config/i3
 ln -s $LOCAL_DIR/etc/.xinitrc $HOME/
 ln -s $ZSH_DIR/.zshenv $HOME/
@@ -80,12 +80,7 @@ ln -s $LOCAL_DIR/etc/picom.conf $HOME/.config
 ln -s $LOCAL_DIR/bin/dwm_exec $HOME/
 ln -s $LOCAL_DIR/etc/config $HOME/.config/i3/
 
-
-cd $MAIN_DIR/suckless/dwm && sudo make clean install
-cd $MAIN_DIR/suckless/slstatus && sudo make clean install
-cd $MAIN_DIR/suckless/st && sudo make clean install
-cd $MAIN_DIR/suckless/dmenu && sudo make clean install
-cd $MAIN_DIR/suckless/slock && sudo make clean install
+cp $LOCAL_DIR/etc/user-dirs.dirs $HOME/.config/
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
