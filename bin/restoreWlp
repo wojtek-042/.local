@@ -2,4 +2,4 @@
 
 cd $(dirname $([ -L $0 ] && readlink -f $0 || echo $0))
 cd ../share
-feh --no-fehbg --bg-fill mw.jpg
+feh --no-fehbg --bg-fill ubu.png
