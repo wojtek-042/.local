@@ -26,10 +26,13 @@ sudo xbps-install -y fzf git make base-devel lua openssh curl \
     freetype-devel glib-devel cairo-devel font-awesome6 \
     ffmpeg playerctl ranger mpv xclip scrot ImageMagick \
     i3 dunst i3status dmenu nm-tray blueman tmux \
-    libopencv-devel libX11-devel i3lock keychain brightnessctl neovim spotify-tui spotifyd xtools
+    libopencv-devel libX11-devel i3lock keychain\
+    brightnessctl neovim spotify-tui spotifyd xtools elogind polkit dbus
 
 sudo xbps-install -Suv
 
+cowsay "Setting up loginctl"
+sudo ln -srf /etc/sv/{dbus,polkitd,elogind} /var/service
 cowsay "Setting up fonts"
 sudo mkdir /usr/share/fonts/truetype/meslo && sudo mv *.ttf /usr/share/fonts/truetype/meslo/
 
