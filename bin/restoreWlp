@@ -1,5 +1,22 @@
 #!/bin/sh
 
 cd $(dirname $([ -L $0 ] && readlink -f $0 || echo $0))
-cd ../share
-feh --no-fehbg --bg-fill ubu.png
+
+
+image_dir="../share"
+
+# Use find to locate all image files in the share directory
+image_files=$(find "$image_dir" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \))
+
+# Extract filenames from the file paths
+image_filenames=$(basename -a $image_files)
+
+# Use dmenu to prompt the user to choose an image file
+chosen_filename=$(echo "$image_filenames" | dmenu -i -p "Select wallpaper:")
+
+# Get the corresponding full path for the chosen filename
+chosen_file=$(echo "$image_files" | grep -F "$chosen_filename")
+
+# Set the chosen file as the wallpaper using feh
+feh --no-fehbg --bg-fill "$chosen_file"
+

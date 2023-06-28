@@ -196,6 +196,8 @@ flash() { nrfjprog --recover && nrfjprog --program "$1" --sectorerase && nrfjpro
 
 tb() { cat $1 | tty-table  ;}
 
+burn() { sudo dd bs=4M if=$1 of=$2 status=progress oflag=sync ;}
+
 #keychain --quiet ~/.ssh/gw-key-1
 #source ~/.keychain/$HOST-sh
 
