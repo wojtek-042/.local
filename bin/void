@@ -26,7 +26,7 @@ sudo xbps-install -y fzf git make base-devel lua openssh curl \
     freetype-devel glib-devel cairo-devel font-awesome6 \
     ffmpeg playerctl ranger mpv xclip scrot ImageMagick \
     i3 dunst nm-tray blueman \
-    libopencv-devel libX11-dev i3lock keychain brightnessctl neovim
+    libopencv-devel libX11-dev i3lock keychain brightnessctl neovim spotify-tui spotifyd
 
 sudo xbps-install -Su
 
