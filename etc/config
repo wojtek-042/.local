@@ -44,7 +44,7 @@ exec --no-startup-id picom --config $etc_dir/picom.conf
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
 # i3lock settings
-bindsym $mod+Ctrl+l exec --no-startup-id $bin_dir/clock
+bindsym $mod+Ctrl+l exec --no-startup-id $bin_dir/lock
 
 bindsym $mod+Ctrl+p exec --no-startup-id $bin_dir/screens
 
