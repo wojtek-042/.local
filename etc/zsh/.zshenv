@@ -6,4 +6,3 @@ export PATH=$PATH:$WORK_DIR/.local/bin
 export ZDOTDIR=$WORK_DIR/.local/etc/zsh #needs to contain everything regarding zsh
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 
-. "$HOME/.cargo/env"

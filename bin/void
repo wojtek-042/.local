@@ -22,11 +22,11 @@ git submodule init
 git submodule update
 
 sudo xbps-install -y fzf git make base-devel lua openssh curl \
-    zsh cowsay wget flameshot neofetch picom font-hermit-otf feh alsa-utils gcc g++ \
+    zsh cowsay wget flameshot neofetch picom font-hermit-otf feh alsa-utils gcc \
     freetype-devel glib-devel cairo-devel font-awesome6 \
     ffmpeg playerctl ranger mpv xclip scrot ImageMagick \
-    i3 dunst nm-tray blueman \
-    libopencv-devel libX11-dev i3lock keychain brightnessctl neovim spotify-tui spotifyd
+    i3 dunst i3status dmenu nm-tray blueman tmux \
+    libopencv-devel libX11-devel i3lock keychain brightnessctl neovim spotify-tui spotifyd
 
 sudo xbps-install -Su
 
@@ -78,4 +78,4 @@ cp $LOCAL_DIR/etc/user-dirs.dirs $HOME/.config/
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
-cowsay "Restart the shell and do: nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node"
+echo "Restart the shell and do: nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node"
