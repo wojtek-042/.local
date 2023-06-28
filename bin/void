@@ -26,37 +26,38 @@ sudo xbps-install -y fzf git make base-devel lua openssh curl \
     freetype-devel glib-devel cairo-devel font-awesome6 \
     ffmpeg playerctl ranger mpv xclip scrot ImageMagick \
     i3 dunst i3status dmenu nm-tray blueman tmux \
-    libopencv-devel libX11-devel i3lock keychain brightnessctl neovim spotify-tui spotifyd
+    libopencv-devel libX11-devel i3lock keychain brightnessctl neovim spotify-tui spotifyd xtools
 
-sudo xbps-install -Su
-
-#cowsay "installing flatpaks"
-#flatpak install spotify slack
-
-
-#cowsay "Symlinking flatpak binaries for dmenu use"
-#sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.slack.Slack /usr/bin/slack
-#sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/spotify
-
+sudo xbps-install -Suv
 
 cowsay "Setting up fonts"
 sudo mkdir /usr/share/fonts/truetype/meslo && sudo mv *.ttf /usr/share/fonts/truetype/meslo/
 
 cd $HOME/Downloads/
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-mkdir ~/.local/share/fonts/TTF
-unzip Hack.zip -d HackTTF && mv HackTTF ~/.local/share/fonts/TTF/
+unzip Hack.zip -d HackTTF && sudo mv HackTTF /usr/share/fonts/TTF/HackTTF
 rm -rf Hack.zip
 
 cd $HOME
 
-cowsay "Setting up neovim"
+cowsay "Setting up neovim through nvchad"
+cd $HOME
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+#git clone git@github.com:$git_user/nvim.git $HOME/.config/nvim
+#git clone git@github.com:$git_user/.local.git $MAIN_DIR/.local
 
-git clone git@github.com:$git_user/nvim.git $HOME/.config/nvim
-git clone git@github.com:$git_user/.local.git $MAIN_DIR/.local
+#git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+#	 ~/.local/share/nvim/site/pack/packer/start/packer.neovim
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-	 ~/.local/share/nvim/site/pack/packer/start/packer.neovim
+
+cowsay "Setting up xbps-src"
+cd $HOME
+git clone https://github.com/void-linux/void-packages.git && cd void-packages && ./xbps-src binary-bootstrap
+echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
+
+cowsay "Installing spotify"
+./xbps-src pkg spotify
+sudo xbps-install -y --repository hostdir/binpkgs/nonfree spotify
 
 rm $HOME/.zshrc
 rm $HOME/.xinitrc
@@ -78,4 +79,6 @@ cp $LOCAL_DIR/etc/user-dirs.dirs $HOME/.config/
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
-echo "Restart the shell and do: nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node"
+echo "Restart the shell and do: nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node && nvim"
+
+cowsay "Done!"
