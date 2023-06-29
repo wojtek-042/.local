@@ -6,5 +6,4 @@ pkill -f nm-applet
 
 flameshot  &
 blueman-applet &
-nm-tray --indicator &
-
+dbus-launch nm-applet &
