@@ -24,6 +24,10 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+## SSH keys
+keychain --quiet ~/.ssh/id_ed25519 ~/.ssh/gw-key-1
+source $HOME/.keychain/$HOST-sh
+
 ## VI mode
 
 #bindkey -v

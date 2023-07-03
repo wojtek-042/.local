@@ -34,7 +34,6 @@ set $bin_dir $HOME/projects/.local/bin
 
 exec --no-startup-id dunst -config $etc_dir/dunstrc
 exec --no-startup-id setxkbmap pl
-exec --no-startup-id exec trays &
 exec --no-startup-id picom --config $etc_dir/picom.conf
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -44,6 +43,9 @@ exec --no-startup-id picom --config $etc_dir/picom.conf
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
 # i3lock settings
+
+exec --no-startup-id sh $bin_dir/trays
+
 bindsym $mod+Ctrl+l exec --no-startup-id $bin_dir/lock
 
 bindsym $mod+Ctrl+p exec --no-startup-id $bin_dir/screens
@@ -182,6 +184,12 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+workspace 1 output HDMI2 VGA1 VGA2 HDMI1
+workspace 2 output HDMI2 VGA1 VGA2 HDMI1
+workspace 3 output eDP1 eDP2
+workspace 4 output HDMI2 VGA1 VGA2 HDMI1
+workspace 5 output eDP1 eDP2
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -270,6 +278,7 @@ client.focused          #7FFFD4 #285577 #ffffff #2e9ef4   #285577
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)exec /home/ap/.config/i3status/mybar.sh
+#
 
 bar {
         font pango:Hack Nerd Font, Font Awesome 6 Free, Font Awesome 6 Brands, Font Awesome v4 Compatibility:style=Regular:antialias=true: 10
