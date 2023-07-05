@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo  "Deleting old encrypted archive...\n"
+rm -rf "firefly.tar.gz.gpg"
+echo  "Creating new unencrypted archive...\n"
+sudo tar -czf "firefly.tar.gz" "firefly"
+echo  "Deleting unencrypted directory...\n"
+sudo rm -rf "firefly"
+echo  "Encrypting new archive...\n"
+gpg -c "firefly.tar.gz"
+echo  "Deleting unencrypted archive...\n"
+rm -rf "firefly.tar.gz"
+echo  "Done:\n"
+ls

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+echo  "Deleting old containers\n"
+docker rm firefly_iii_cron
+docker rm firefly_iii_upload
+docker rm firefly_iii_db
+
+echo  "Decrypting the archive...\n"
+gpg --decrypt "firefly.tar.gz.gpg" > "firefly.tar.gz"
+echo  "Archive name: firefly.tar.gz"
+echo  "Unpacking the archive...\n"
+tar xzf "firefly.tar.gz"
+echo  "Done!\n"
+ls
+
