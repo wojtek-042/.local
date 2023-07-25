@@ -80,7 +80,7 @@ ln -s $LOCAL_DIR/etc/picom.conf $HOME/.config
 ln -s $LOCAL_DIR/bin/dwm_exec $HOME/
 ln -s $LOCAL_DIR/etc/config $HOME/.config/i3/
 
-cp $LOCAL_DIR/etc/user-dirs.dirs $HOME/.config/
+#cp $LOCAL_DIR/etc/user-dirs.dirs $HOME/.config/
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
