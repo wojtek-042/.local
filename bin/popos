@@ -32,11 +32,9 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
 sudo apt update && sudo apt upgrade
 
 cowsay "installing flatpaks"
-flatpak install spotify slack
-
+flatpak install spotify 
 
 cowsay "Symlinking flatpak binaries for dmenu use"
-sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.slack.Slack /usr/bin/slack
 sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/spotify
 
 
