@@ -25,8 +25,8 @@ alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 ## SSH keys
-keychain --quiet ~/.ssh/id_ed25519 ~/.ssh/gw-key-1
-source $HOME/.keychain/$HOST-sh
+#keychain --quiet ~/.ssh/id_ed25519 ~/.ssh/gw-key-1
+#source $HOME/.keychain/$HOST-sh
 
 ## VI mode
 
@@ -61,4 +61,4 @@ source $ZDOTDIR/zsh-git-prompt/zshrc.sh
 #PROMPT="%B%m%~%b$(git_super_status) \$ "
 PROMPT='%B%F{9}%n%F{reset} %F{10}%~%F{reset}%b $(git_super_status)$ '
 export GIT_EDITOR=vim
-keychain -q -Q --noask
+#keychain -q -Q --noask

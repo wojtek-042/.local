@@ -26,7 +26,7 @@ sudo pacman -Syu --noconfirm fzf git make gcc lua openssh curl \
     zsh cowsay wget flameshot libxft libxinerama libxrandr \
     harfbuzz neofetch picom ttf-hermit alsa-utils freetype glib2 cairo fontawesome \
     ffmpeg playerctl ranger mpv xclip scrot imagemagick \
-    i3-gaps dunst blueman geoclue opencv libx11 i3lock keychain brightnessctl
+    i3-wm i3lock i3status dunst blueman geoclue opencv libx11 i3lock keychain brightnessctl nm-tray dmenu
 
 cowsay "Installing yay"
 git clone https://aur.archlinux.org/yay.git
