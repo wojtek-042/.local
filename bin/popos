@@ -31,12 +31,26 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
 
 sudo apt update && sudo apt upgrade
 
-cowsay "installing flatpaks"
-flatpak install spotify 
+#cowsay "installing flatpaks"
+#flatpak install spotify
 
-cowsay "Symlinking flatpak binaries for dmenu use"
-sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/spotify
+#cowsay "Symlinking flatpak binaries for dmenu use"
+#sudo ln -s $HOME/.local/share/flatpak/exports/bin/com.spotify.Client /usr/bin/spotify
+cowsay "installing spotify"
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
 
+cowsay "installing brave"
+sudo apt install curl
+
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt update
+
+sudo apt install brave-browser
 
 cowsay "Setting up fonts"
 sudo mkdir /usr/share/fonts/truetype/meslo && sudo mv *.ttf /usr/share/fonts/truetype/meslo/
