@@ -31,6 +31,9 @@ sudo apt install -y fzf git make build-essential lua5.4 openssh-server curl \
 
 sudo apt update && sudo apt upgrade
 
+#install deno for nvim markdown preview
+icurl -fsSL https://deno.land/install.sh | sh
+
 #cowsay "installing flatpaks"
 #flatpak install spotify
 
