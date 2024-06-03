@@ -184,11 +184,11 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace 1 output HDMI2 VGA1 VGA2 HDMI1
-workspace 2 output HDMI2 VGA1 VGA2 HDMI1
-workspace 3 output eDP1 eDP2
-workspace 4 output HDMI2 VGA1 VGA2 HDMI1
-workspace 5 output eDP1 eDP2
+workspace 1 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
+workspace 2 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
+workspace 3 output eDP1 eDP2 LVDS-1-1
+workspace 4 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
+workspace 5 output eDP1 eDP2 LVDS-1-1
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -261,8 +261,8 @@ mode "$mode_system" {
         bindsym e exec --no-startup-id i3-msg exit, mode "default"
         bindsym s exec --no-startup-id $i3lockwall && loginctl suspend, mode "default"
         bindsym h exec --no-startup-id $i3lockwall && loginctl hibernate, mode "default"
-        bindsym r exec --no-startup-id loginctl reboot, mode "default"
-        bindsym Ctrl+s exec --no-startup-id loginctl poweroff -i, mode "default"
+        bindsym r exec --no-startup-id reboot now, mode "default"
+        bindsym Ctrl+s exec --no-startup-id shutdown now, mode "default"
 
 # back to normal: Enter or Escape
         bindsym Return mode "default"
