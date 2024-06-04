@@ -68,6 +68,14 @@ vclose() {
     ls
 }
 
+pandock() {
+sudo docker run --rm \
+       --volume "$(pwd):/data" \
+       --user $(id -u):$(id -g) \
+       pandoc/extra $1 -o $2 --template eisvogel -V lang=pl
+
+}
+
 mig() {
     git remote set-url origin $1
     git push
