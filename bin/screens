@@ -24,7 +24,7 @@ for display in $displays; do
 done
 
 # Prompt the user with options for the other display using dmenu
-options="Turn Off\nLeft of Primary\nRight of Primary"
+options="Turn Off\nLeft of Primary\nRight of Primary\nAbove of Primary\nBelow of Primary"
 selected_option=$(echo  "$options" | dmenu -i -p "Select an action for the other display:")
 
 # Configure the other display based on the selected option
@@ -37,6 +37,12 @@ case $selected_option in
     ;;
   "Right of Primary")
     xrandr --output $primary --auto --output ${other_displays#* } --auto --right-of $primary
+    ;;
+  "Above of Primary")
+    xrandr --output $primary --auto --output ${other_displays#* } --auto --above $primary
+    ;;
+  "Below of Primary")
+    xrandr --output $primary --auto --output ${other_displays#* } --auto --below $primary
     ;;
   *) echo "Invalid option.";;
 esac
