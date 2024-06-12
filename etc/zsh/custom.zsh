@@ -28,7 +28,7 @@ alias nv="nvim ."
 
 alias rn="ranger ."
 
-alias helpme="cat $ZDOTDIR/custom.zsh | sed 's/alias//'| sed 's/=/ ---> /' | sed 's/) /) ---> /' | sed 's/[\"'\'']//g' "
+alias helpme="cat $ZDOTDIR/custom.zsh"
 
 alias srb='source $HOME/.zshrc'
 
