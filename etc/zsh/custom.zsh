@@ -36,6 +36,10 @@ alias als="nvim $ZDOTDIR/custom.zsh"
 
 alias tms='tmux ls'
 
+alias hl="hledger"
+
+alias hwe="hledger bal -W expenses -b $(date +"%Y-%m")"
+
 pro() { PS1="($1) ${PS1}" ;}
 
 vopen() {
