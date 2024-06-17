@@ -17,7 +17,7 @@ sudo dnf update -y
 
 sudo dnf groupupdate core
 
-sudo hostnamectl set-hostname "napalm"
+sudo hostnamectl set-hostname "ap"
 
 sudo dnf install -y\
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -35,39 +35,72 @@ sudo dnf remove gnome-software PackageKit
 
 sudo dnf groupupdate sound-and-video
 
-flatpak install spotify com.mattjakeman.ExtensionManager
+flatpak install com.mattjakeman.ExtensionManager
 
-cowsay "Cloning dotfiles repo"
-mkdir $work_dir
-git clone git@github.com:$git_user/dotfiles.git ~/$work_dir/dotfiles/
+#!/bin/bash
 
-cowsay "Setting up zsh"
-sleep 1
+# Navigate to the script's directory
+cd "$(dirname "$0")"
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+# Set directory variables
+MAIN_DIR="$HOME/$work_dir"
+ZSH_DIR="$MAIN_DIR/.local/etc/zsh"
+LOCAL_DIR="$MAIN_DIR/.local"
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# Initialize submodules (assuming git is already installed)
+cd "$LOCAL_DIR"
+git submodule init
+git submodule update
 
-cd ~
+# Install required packages using dnf
+sudo dnf install -y fzf git make gcc gcc-c++ lua5.3 openssh-server curl wget flameshot libXt-devel libX11-devel libXrandr-devel libharfbuzz-devel neofetch picom fonts-hermit feh alsa-utils glibc-devel glib2-devel cairo-devel fontconfig-fontawesome ffmpeg playerctl ranger mpv xclip scrot ImageMagick dconf i3 dunst nm-tray blueman geoclue libopencv-devel libX11-devel i3lock keychain brightnessctl
 
-ln /home/$username/$work_dir/dotfiles/.zshrc /home/$username/.zshrc
+# Skip flatpak installation (not recommended for Fedora)
 
-cowsay "Setting up tmux"
-ln ~/$work_dir/dotfiles/.tmux.conf ~/.tmux.conf
+# Skip Spotify installation using dedicated repository (use Flatpak instead)
 
+# Install Brave browser
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/fedora/stable
+sudo dnf update
+sudo dnf install brave-browser
 
-cowsay "Setting up neovim"
+# Setting up fonts
+sudo mkdir -p /usr/share/fonts/TTF/Meslo && mv *.ttf /usr/share/fonts/TTF/Meslo/
+
+# Download and install Nerd Fonts (adjust the font name if desired)
+cd "$HOME/Downloads"
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+mkdir -p ~/.local/share/fonts/TTF
+unzip Hack.zip -d HackTTF && mv HackTTF ~/.local/share/fonts/TTF/
+rm -rf Hack.zip
+cd "$HOME"
+
+# Skip neovim installation using PPA (use dnf instead)
+sudo dnf install neovim git
+git clone git@github.com:"$git_user"/nvim.git "$HOME/.config/nvim"
+git clone git@github.com:"$git_user"/.local.git "$MAIN_DIR/.local"
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.neovim
+rm "$HOME/.zshrc"  # Assuming you don't use zsh
+
+# Clone tmux plugins (assuming tmux is already installed)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Setting up symlinks
+mkdir -p "$HOME/.config/i3"
+ln -s "$LOCAL_DIR/etc/.xinitrc" "$HOME/"
+ln -s "$ZSH_DIR/.zshenv" "$HOME/"  # Assuming you don't use zsh
+ln -s "$LOCAL_DIR/etc/.tmux.conf" "$HOME/"
+ln -s "$LOCAL_DIR/etc/picom.conf" "$HOME/.config/picom"
+ln -s "$LOCAL_DIR/bin/dwm_exec" "$HOME/"
+ln -s "$LOCAL_DIR/etc/config" "$HOME/.config/i3/"
+
+# Install nvm using NodeSource
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+. "$HOME/.bashrc"  # Source the .bashrc file immediately
 
-git clone git@github.com:$git_user/nvim.git /home/$username/.config/nvim
+# Final message (adjusted for nvm installation)
+cowsay "Restart the shell and do: nvm install node && cd ~/.config/nvim && nvm use node to complete neovim installation"
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.neovim
-
-nvm install node
-source ~/.bashrc
-cd ~/.config/nvim && nvm use node
 
 
