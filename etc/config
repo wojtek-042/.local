@@ -106,7 +106,7 @@ floating_modifier $mod
 default_border pixel
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -184,7 +184,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace 1 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
+workspace 1 output HDMI2 VGA-1 VGA2 HDMI1 VGA-1-1
 workspace 2 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
 workspace 3 output eDP1 eDP2 LVDS-1-1
 workspace 4 output HDMI2 VGA1 VGA2 HDMI1 VGA-1-1
@@ -215,8 +215,10 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # move focused workspace between monitors
-bindsym $mod+Ctrl+greater move workspace to output right
-bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+Ctrl+Down move workspace to output down
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Left move workspace to output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -261,8 +263,8 @@ mode "$mode_system" {
         bindsym e exec --no-startup-id i3-msg exit, mode "default"
         bindsym s exec --no-startup-id $i3lockwall && loginctl suspend, mode "default"
         bindsym h exec --no-startup-id $i3lockwall && loginctl hibernate, mode "default"
-        bindsym r exec --no-startup-id reboot now, mode "default"
-        bindsym Ctrl+s exec --no-startup-id shutdown now, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot , mode "default"
+        bindsym Ctrl+s exec --no-startup-id systemctl poweroff, mode "default"
 
 # back to normal: Enter or Escape
         bindsym Return mode "default"
