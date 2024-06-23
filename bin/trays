@@ -2,8 +2,8 @@
 
 pkill -f flameshot
 pkill -f blueman-applet
-pkill -f nm-applet
+#pkill -f nm-applet
 
 flameshot  &
 blueman-applet &
-dbus-launch nm-applet &
+#dbus-launch nm-applet &
