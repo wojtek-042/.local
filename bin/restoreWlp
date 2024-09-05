@@ -18,5 +18,5 @@ chosen_filename=$(echo "$image_filenames" | dmenu -i -p "Select wallpaper:")
 chosen_file=$(echo "$image_files" | grep -F "$chosen_filename")
 
 # Set the chosen file as the wallpaper using feh
-feh --no-fehbg --bg-fill "$chosen_file"
+feh --no-fehbg --bg-center "$chosen_file"
 
