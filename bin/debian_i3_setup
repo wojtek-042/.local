@@ -54,9 +54,10 @@ cd $HOME
 
 cowsay "Setting up neovim"
 
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install neovim
+sudo apt install wget
+wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod +x ./nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
 
 git clone git@github.com:$git_user/nvim.git $HOME/.config/nvim
 git clone git@github.com:$git_user/.local.git $MAIN_DIR/.local
@@ -82,7 +83,7 @@ ln -s $LOCAL_DIR/etc/config $HOME/.config/i3/
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
-bash -c 'nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node'
+echo "Script has finished working, now retsart the terminal and paste this: nvm install node && source ~/.bashrc && cd ~/.config/nvim && nvm use node"
 
 #cowsay "Restart the shell and do:\
 #nvm install node\

@@ -3,7 +3,7 @@
 # Moved to the .zshenv!
 
 ######################### Directory jumping #########################
-alias nvim='/usr/bin/nvim/nvim'
+#alias nvim='/usr/bin/nvim/nvim'
 
 alias govim="cd $HOME/.config/nvim/"
 
